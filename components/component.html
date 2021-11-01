@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="https://unpkg.com/vue@next"></script>
+<!--    使用 script 标签引入js文件的时候，需要使用src来引入，type为text/javascript
+        使用 link 标签引用css文件的时候，需要使用ref来引用，type为text/css
+-->
+    <script rel="script" type="text/javascript" src="../js/helloworld.js"></script>
+</head>
+<body>
+    <div id="component">
+        <ol>
+            <todos
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+            ></todos>
+        </ol>
+    </div>
+
+    <script>
+        const app = Vue.createApp(TodoList)
+        app.component(
+            // 使用String , 对象来注册一个组件， 使用<string1></string1>来引用当前组件
+            // props
+            'todos', {
+                // prop 接口与父单元进行了良好的解耦
+                props: ['todo'],
+                template: `<li> {{ todo.text }}</li>`
+            }
+        )
+        app.mount("#component");
+    </script>
+</body>
+</html>

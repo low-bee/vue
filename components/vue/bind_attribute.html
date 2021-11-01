@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bind-attribute</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" type="text/css" href="../../style/bind_attribute.css">
+</head>
+<body>
+    <div id="bind-attribute" class="demo">
+        <!--
+            表示 将这个元素节点的 title attribute
+            和当前活跃实例的 message property 保持一致
+            前缀 v- 表示和vue 相关的标签
+        -->
+        <span v-bind:title="message">
+            鼠标悬停几秒查看提示的绑定信息！
+        </span>
+    </div>
+    <script>
+        const AttributeBinding = {
+          data() {
+              return {
+                  message: 'You loaded this page on ' + new Date().toLocaleString()
+              }
+            }
+        }
+        // 挂载到对应的dom上的时候，使用id选择器一定要带上 #
+        Vue.createApp(AttributeBinding).mount('#bind-attribute')
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="list-rendering">
+<!--        表示一个有序的列表-->
+        <ol>
+<!--            相当于是循环一个列表中的对象，将todo对象的text域放在此处
+-->
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        const ListRendering = {
+            data() {
+                return {
+                    todos : [
+                        { text: 'Learn JavaScript' },
+                        { text: 'Learn Vue' },
+                        { text: 'Build something awesome' }
+                    ]
+                }
+            }
+        }
+
+        Vue.createApp(ListRendering).mount('#list-rendering');
+    </script>
+</body>
+</html>

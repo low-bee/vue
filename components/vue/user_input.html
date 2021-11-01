@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handle User Input</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" type="text/css" ref="../../style/v-if.css">
+</head>
+<body>
+    <div id="event-handling" class="demo">
+        <p v-if="seen"> {{ message }}</p>
+<!--
+    首先将EventHanding 挂载到 event-handling 上，然后使用
+    v-on: click 绑定了一个点击事件，当点击翻转信息按钮之后， 触发这个事件
+    这个事件以一个 methods对象 的形式放在 EventHandling 对象中
+    并且这个对象的绑定是单向的,
+    使用v-model进行双向绑定，使用v-if来表示当前标签是否显示
+-->
+        <button v-if="seen" v-on:click="reverseMessage"> 翻转信息 </button>
+        <button v-if="seen" v-on:click="reverseSeen"> 消失 </button>
+        <button v-if="!seen" v-on:click="reverseSeen">出现</button>
+        <br/>
+        <br/>
+        <input v-if="seen" v-model="message"/>
+    </div>
+</body>
+    <script>
+        const EventHanding = {
+            data() {
+                return {
+                    seen: true,
+                    message: "hello vue.js!"
+                }
+            },
+            methods: {
+                reverseMessage() {
+                    this.message = this.message.split('').reverse().join('')
+                },
+                reverseSeen() {
+                    this.seen = !this.seen;
+                }
+            }
+        }
+
+        Vue.createApp(EventHanding).mount('#event-handling');
+    </script>
+</html>
