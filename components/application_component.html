@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>app&comp</title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+    <script>
+        import { createApp } from 'vue'
+        // 创建一个Vue app
+        const app = createApp({});
+        // 注册或检索全局组件。注册还会使用给定的 name 参数（第一个参数）自动设置组件的
+        app.component('SearchInput', SearchInputComponent);
+        // 注册或检索全局指令。
+        app.directive('focus', FocusDirective);
+        app.use(LocalPlugin);
+
+        // 也可以使用链上api来创建一个vue app
+        // const app = Vue.createApp({})
+        //     .component('SearchInput', SearchInputComponent)
+        //     .directive('focus', FocusDirective)
+        //     .use(LocalPlugin);
+    </script>
+</body>
+</html>

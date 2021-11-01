@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computer</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="computed-basics">
+        <p>Has published books:</p>
+        <ol>
+            <li v-for="book in author.books">
+                {{ book }}
+            </li>
+        </ol>
+        <span>{{publishedBookMessage}}</span>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    author: {
+                        name : 'John Doe',
+                        books: [
+                            'Vue 2 - Advanced Guide',
+                            'Vue 3 - Basic Guide',
+                            'Vue 4 - The Mystery'
+                        ]
+                    }
+                }
+            },
+            // 计算属性
+            computed: {
+                publishedBookMessage() {
+                    return this.author.books.length > 0 ? 'Yes': 'No';
+                }
+            }
+        }).mount('#computed-basics');
+    </script>
+</body>
+</html>

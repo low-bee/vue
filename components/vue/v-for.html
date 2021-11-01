@@ -11,10 +11,12 @@
         <ol>
 <!--            相当于是循环一个列表中的对象，将todo对象的text域放在此处
 -->
-            <li v-for="todo in todos">
-                {{ todo.text }}
+            <li v-for="(todo, index) in todos">
+                {{ index }}: {{ todo.text }}
             </li>
         </ol>
+
+        <li v-for="n in eventNumbers" :key="n">{{ n }}</li>
     </div>
 
     <script>
@@ -25,12 +27,18 @@
                         { text: 'Learn JavaScript' },
                         { text: 'Learn Vue' },
                         { text: 'Build something awesome' }
-                    ]
+                    ],
+                    numbers: [1,2,3,4,5,6]
+                }
+            },
+            computed: {
+                eventNumbers() {
+                    return this.numbers.filter(item => item % 2 === 0)
                 }
             }
         }
 
-        Vue.createApp(ListRendering).mount('#list-rendering');
+        vm = Vue.createApp(ListRendering).mount('#list-rendering');
     </script>
 </body>
 </html>
