@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>base</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="blog-posts-events-demo" class="demo">
+        <div id="blog-posts-demo" :style="{fontSize: postFontSize + 'em'}">
+            <!--        绑定的标签可以是随机的   -->
+            <blog-post
+                    v-for="post in posts"
+                    :key="post.id"
+                    :title="post.title"
+                    @enlarge-text="postFontSize += 0.01"
+            ></blog-post>
+        </div>
+    </div>
+
+   <script>
+       const app = {
+           data() {
+               return {
+                   posts : [
+                       { id: 1, title: 'My journey with Vue' },
+                       { id: 2, title: 'Blogging with Vue' },
+                       { id: 3, title: 'Why Vue is so fun' }
+                       // 1,2,3,4,5
+                   ],
+                   postFontSize: 1
+               }
+           }
+       }
+
+       const vueApp = Vue.createApp(app)
+
+       vueApp.component('blog-post', {
+           props: ['title'],
+           emits: ['enlargeText'],
+           template: `
+             <div class="blog-post">
+                <h4> {{ title }}</h4>
+                <button @click="$emit('enlargeText')">
+                Enlarge text
+                </button>
+             </div>`
+       })
+
+       vueApp.mount('#blog-posts-events-demo')
+    </script>
+
+</body>
+</html>
